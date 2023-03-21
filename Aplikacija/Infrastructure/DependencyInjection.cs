@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 
 namespace Infrastructure
 {
@@ -11,7 +12,18 @@ namespace Infrastructure
         {
             services.AddDbContext<StackOverflow2010Context>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                    builder => builder.MigrationsAssembly(typeof(StackOverflow2010Context).Assembly.FullName)));
+                    builder => builder.MigrationsAssembly(typeof(StackOverflow2010Context).Assembly.FullName).CommandTimeout(60)));
+
+            services.AddSingleton<IConnectionMultiplexer>(opt =>
+            {
+                var configurationOptions = new ConfigurationOptions
+                {
+                    EndPoints = {configuration.GetConnectionString("Redis") },
+                    Password = "AZ4N38hJbEu(MeG]_{E",
+                    DefaultDatabase = 7
+                };
+                return ConnectionMultiplexer.Connect(configurationOptions);
+            });
 
             return services;
         }
