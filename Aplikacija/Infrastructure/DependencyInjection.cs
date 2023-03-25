@@ -12,18 +12,20 @@ namespace Infrastructure
         {
             services.AddDbContext<StackOverflow2010Context>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                    builder => builder.MigrationsAssembly(typeof(StackOverflow2010Context).Assembly.FullName).CommandTimeout(60)));
+                    builder => builder.MigrationsAssembly(typeof(StackOverflow2010Context).Assembly.FullName).CommandTimeout(120)));
 
             services.AddSingleton<IConnectionMultiplexer>(opt =>
             {
                 var configurationOptions = new ConfigurationOptions
                 {
-                    EndPoints = {configuration.GetConnectionString("Redis") },
+                    EndPoints = { configuration.GetConnectionString("Redis") },
                     Password = "AZ4N38hJbEu(MeG]_{E",
                     DefaultDatabase = 7
                 };
                 return ConnectionMultiplexer.Connect(configurationOptions);
             });
+
+            services.AddSingleton<IMongoDBClient, MongoDBClient>();
 
             return services;
         }

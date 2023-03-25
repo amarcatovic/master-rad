@@ -1,4 +1,6 @@
-﻿using Application.Posts.NormalApproach.Queries;
+﻿using Application.Posts.Mongo.Commands;
+using Application.Posts.Mongo.Queries;
+using Application.Posts.NormalApproach.Queries;
 using Application.Posts.Redis.Commands;
 using Application.Posts.Redis.Queries;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +21,9 @@ namespace WebApi.Controllers
         {
             var result = await Mediator.Send(new GetTopFavouritePostsQuery());
 
+            // Update all cache
             await Mediator.Send(new CreateTopFavouritePostsOnRedisCommand { Posts = result });
+            await Mediator.Send(new CreateTopFavouritePostsOnMongoCommand { Posts = result });
 
             return Ok(result);
         }
@@ -28,6 +32,18 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetTopFavouritePostsFromRedisAsync()
         {
             var cachedPosts = await Mediator.Send(new GetTopFavouritePostsFromRedisCacheQuery());
+            if (cachedPosts == null)
+            {
+                return await GetTopFavouritePostsAsync();
+            }
+
+            return Ok(cachedPosts);
+        }
+
+        [HttpGet("top-favourite-mongo")]
+        public async Task<IActionResult> GetTopFavouritePostsFromMongoAsync()
+        {
+            var cachedPosts = await Mediator.Send(new GetTopFavouritePostsFromMongoCacheQuery());
             if (cachedPosts == null)
             {
                 return await GetTopFavouritePostsAsync();

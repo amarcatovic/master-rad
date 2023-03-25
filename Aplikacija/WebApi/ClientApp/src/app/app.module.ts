@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { HomeRedisComponent } from './home-redis/home-redis.component';
+import { HomeMongoComponent } from './home-mongo/home-mongo.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
     NavMenuComponent,
     HomeComponent,
     HomeRedisComponent,
+    HomeMongoComponent,
     CounterComponent,
     FetchDataComponent
   ],
@@ -33,6 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'redis', component: HomeRedisComponent, pathMatch: 'full' },
+      { path: 'mongo', component: HomeMongoComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ]),

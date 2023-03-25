@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Posts\Mongo\" />
     <Folder Include="Posts\InMemory\" />
   </ItemGroup>
 
