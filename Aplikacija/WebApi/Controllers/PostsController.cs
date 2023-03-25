@@ -1,4 +1,6 @@
-﻿using Application.Posts.Mongo.Commands;
+﻿using Application.Posts.InMemory.Commands;
+using Application.Posts.InMemory.Queries;
+using Application.Posts.Mongo.Commands;
 using Application.Posts.Mongo.Queries;
 using Application.Posts.NormalApproach.Queries;
 using Application.Posts.Redis.Commands;
@@ -27,6 +29,7 @@ namespace WebApi.Controllers
             await Mediator.Send(new CreateTopFavouritePostsOnRedisCommand { Posts = result });
             await Mediator.Send(new CreateTopFavouritePostsOnMongoCommand { Posts = result });
             await Mediator.Send(new CreateTopFavouritePostsOnSqlServerCommand { Posts = result });
+            await Mediator.Send(new CreateTopFavouritePostsOnInMemoryDbCommand { Posts = result });
 
             return Ok(result);
         }
@@ -59,6 +62,18 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetTopFavouritePostsFromSqlCacheAsync()
         {
             var cachedPosts = await Mediator.Send(new GetTopFavouritePostsFromSqlCacheQuery());
+            if (cachedPosts == null)
+            {
+                return await GetTopFavouritePostsAsync();
+            }
+
+            return Ok(cachedPosts);
+        }
+
+        [HttpGet("top-favourite-in-memory")]
+        public async Task<IActionResult> GetTopFavouritePostsFromInMemoryCacheAsync()
+        {
+            var cachedPosts = await Mediator.Send(new GetTopFavouritePostsFromInMemoryCacheQuery());
             if (cachedPosts == null)
             {
                 return await GetTopFavouritePostsAsync();

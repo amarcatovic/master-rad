@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 
+
 namespace Infrastructure
 {
     public static class DependencyInjection
@@ -16,6 +17,9 @@ namespace Infrastructure
 
             services.AddDbContext<PostCacheDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("PostCacheConnection")));
+
+            services.AddDbContext<InMemoryPostCacheDbContext>(options =>
+                options.UseInMemoryDatabase("InMemoryPostCache"));
 
             services.AddSingleton<IConnectionMultiplexer>(opt =>
             {
