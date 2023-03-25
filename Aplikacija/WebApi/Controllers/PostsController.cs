@@ -9,6 +9,7 @@ using Application.Posts.Redis.Queries;
 using Application.Posts.SqlCache.Commands;
 using Application.Posts.SqlCache.Queries;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Controllers
 {
@@ -19,6 +20,21 @@ namespace WebApi.Controllers
         public PostsController()
         {
                 
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetPostByIdAsync(int id)
+        {
+            var post = await Mediator.Send(new GetPostByIdQuery {Id = id});
+
+            if (post is null)
+            {
+                return NotFound("This post does not exist!");
+            }
+
+            await Mediator.Send(new UpdatePostViewCountCommand {Id = id});
+
+            return Ok(post);
         }
 
         [HttpGet("top-favourite")]

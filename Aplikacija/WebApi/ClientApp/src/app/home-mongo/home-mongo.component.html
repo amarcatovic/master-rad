@@ -13,10 +13,10 @@
     <td mat-cell *matCellDef="let element"> {{ element.creationDate | date }} </td>
   </ng-container>
 
-  <!-- Answers Column -->
-  <ng-container matColumnDef="answers">
-    <th mat-header-cell *matHeaderCellDef> Answers </th>
-    <td mat-cell *matCellDef="let element"> {{element.answerCount}} </td>
+  <!-- View Count Column -->
+  <ng-container matColumnDef="viewCount">
+    <th mat-header-cell *matHeaderCellDef> View Count </th>
+    <td mat-cell *matCellDef="let element"> {{element.viewCount}} </td>
   </ng-container>
 
   <!-- Favourite Count Column -->

@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CreatePostComponent } from './create-post/create-post.component';
     HomeInMemoryComponent,
     CounterComponent,
     FetchDataComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -45,7 +47,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
       { path: 'sql-cache', component: HomeSqlServerComponent, pathMatch: 'full' },
       { path: 'in-memory', component: HomeInMemoryComponent, pathMatch: 'full' },
       { path: 'new', component: CreatePostComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      { path: 'post/:id', component: PostComponent },
     ]),
     BrowserAnimationsModule,
     MatTableModule,

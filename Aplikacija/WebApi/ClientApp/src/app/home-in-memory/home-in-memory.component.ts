@@ -9,7 +9,7 @@ import Post from '../models/Post';
 export class HomeInMemoryComponent implements OnInit {
   baseUrl!: string;
   posts!: Post[];
-  displayedColumns: string[] = ['title', 'created', 'answers', 'favouriteCount',];
+  displayedColumns: string[] = ['title', 'created', 'viewCount', 'favouriteCount',];
   loading!: boolean | null;
   searchTerm: string = '';
 
@@ -33,7 +33,7 @@ export class HomeInMemoryComponent implements OnInit {
 
   searchPosts = () => {
     if (this.searchTerm === '') {
-      this.displayedColumns = ['title', 'created', 'answers', 'favouriteCount'];
+      this.displayedColumns = ['title', 'created', 'viewCount', 'favouriteCount'];
       return;
     }
 
