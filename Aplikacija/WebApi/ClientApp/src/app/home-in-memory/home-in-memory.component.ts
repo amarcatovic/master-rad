@@ -27,7 +27,6 @@ export class HomeInMemoryComponent implements OnInit {
     this.http.get<Post[]>(this.baseUrl + 'posts/top-favourite-in-memory')
       .subscribe(result => {
         this.posts = result;
-        console.log(this.posts);
         this.loading = false;
       }, error => console.error(error));
   }

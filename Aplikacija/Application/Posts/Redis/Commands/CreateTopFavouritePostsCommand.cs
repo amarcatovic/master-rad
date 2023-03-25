@@ -1,6 +1,5 @@
 ﻿using Domain.Entities;
 using MediatR;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using StackExchange.Redis;
 using System.Text.Json;
 

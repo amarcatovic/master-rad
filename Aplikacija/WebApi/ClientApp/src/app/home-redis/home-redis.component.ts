@@ -27,7 +27,6 @@ export class HomeRedisComponent implements OnInit {
     this.http.get<Post[]>(this.baseUrl + 'posts/top-favourite-redis')
       .subscribe(result => {
         this.posts = result;
-        console.log(this.posts);
         this.loading = false;
       }, error => console.error(error));
   }

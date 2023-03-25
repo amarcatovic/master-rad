@@ -19,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
     HomeSqlServerComponent,
     HomeInMemoryComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,7 +44,7 @@ import { MatIconModule } from '@angular/material/icon';
       { path: 'mongo', component: HomeMongoComponent, pathMatch: 'full' },
       { path: 'sql-cache', component: HomeSqlServerComponent, pathMatch: 'full' },
       { path: 'in-memory', component: HomeInMemoryComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
+      { path: 'new', component: CreatePostComponent },
       { path: 'fetch-data', component: FetchDataComponent },
     ]),
     BrowserAnimationsModule,

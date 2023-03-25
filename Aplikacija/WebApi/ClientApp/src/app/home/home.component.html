@@ -3,15 +3,6 @@
 <div class="w-100">
   <button mat-raised-button color="primary" (click)="loadData()" class="float-end mb-2">Load Data</button>
 </div>
-<div class="mb-3 d-flex align-items-center">
-  <label for="search" class="col-sm-1 col-form-label">Search:</label>
-  <div class="col-sm-4">
-    <input [(ngModel)]="searchTerm" type="text" class="form-control" id="search" placeholder="Title">
-  </div>
-  <button class="col-sm-2 ms-3" mat-fab color="primary" (click)="searchPosts()">
-    <mat-icon>search</mat-icon>
-  </button>
-</div>
 
 <table mat-table [dataSource]="posts" class="mat-elevation-z8 w-100">
   <!-- Title Column -->

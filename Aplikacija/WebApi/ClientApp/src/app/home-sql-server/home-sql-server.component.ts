@@ -27,7 +27,6 @@ export class HomeSqlServerComponent implements OnInit {
     this.http.get<Post[]>(this.baseUrl + 'posts/top-favourite-sql-cache')
       .subscribe(result => {
         this.posts = result;
-        console.log(this.posts);
         this.loading = false;
       }, error => console.error(error));
   }

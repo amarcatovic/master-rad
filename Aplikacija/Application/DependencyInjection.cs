@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Application.Services;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
@@ -11,6 +12,8 @@ namespace Application
 
             services.AddMediatR(config => 
                 config.RegisterServicesFromAssembly(assemmbly));
+
+            services.AddScoped<IUpdatePostCacheService, UpdatePostCacheService>();
 
             services.AddValidatorsFromAssembly(assemmbly);
 
