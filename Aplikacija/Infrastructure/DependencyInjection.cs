@@ -14,6 +14,9 @@ namespace Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                     builder => builder.MigrationsAssembly(typeof(StackOverflow2010Context).Assembly.FullName).CommandTimeout(120)));
 
+            services.AddDbContext<PostCacheDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("PostCacheConnection")));
+
             services.AddSingleton<IConnectionMultiplexer>(opt =>
             {
                 var configurationOptions = new ConfigurationOptions
