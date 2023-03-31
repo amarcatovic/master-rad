@@ -1,4 +1,4 @@
-# Dizajn i implementacija višeslojnog keš sistema u .NET 6
+# DIZAJN, RAZVOJ I IMPLEMENTACIJA VIŠESLOJNOG KEŠ SISTEMA U .NET 6 RAZVOJNOM PROGRAMSKOM OKRUŽENJU
 
 
 ### I. Uvod
